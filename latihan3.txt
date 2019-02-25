@@ -1,0 +1,127 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 40
+Server version: 5.5.51 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| latihan            |
+| latihan1           |
+| latihan2           |
+| latihan3           |
+| mysql              |
+| performance_schema |
+| pratikum3          |
+| pratikum4          |
+| test               |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use latihan3;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_latihan3 |
++--------------------+
+| data_barang        |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> desc data_barang;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| kode        | char(3)     | YES  |     | NULL    |       |
+| nama        | varchar(15) | YES  |     | NULL    |       |
+| harga       | int(7)      | YES  |     | NULL    |       |
+| jenisbarang | varchar(7)  | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.05 sec)
+
+mysql> select * from data_barang;
++------+-------------+-------+-------------+
+| kode | nama        | harga | jenisbarang |
++------+-------------+-------+-------------+
+| A01  | shampo      |  1000 | A           |
+| A02  | sabun mandi |  1500 | A           |
+| A03  | pasta gigi  |  2000 | A           |
+| A04  | sabun cuci  |  1800 | A           |
+| A05  | sikat gigi  |  2100 | A           |
+| B01  | gelas       |  3000 | B           |
+| B02  | piring      |  3200 | B           |
+| B03  | baskom      |  4000 | B           |
++------+-------------+-------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> select count(nama) from data_barang;
++-------------+
+| count(nama) |
++-------------+
+|           8 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(harga) as jumlah from data_barang;
++--------+
+| jumlah |
++--------+
+|  18600 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select avg(harga) as jumlah from data_barang;
++-----------+
+| jumlah    |
++-----------+
+| 2325.0000 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select min(harga) as termurah from data_barang;
++----------+
+| termurah |
++----------+
+|     1000 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select max(harga) as termahal from data_barang;
++----------+
+| termahal |
++----------+
+|     4000 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select jenisbarang, count(kode) as jumlah from data_barang
+    -> group by jenisbarang;
++-------------+--------+
+| jenisbarang | jumlah |
++-------------+--------+
+| A           |      5 |
+| B           |      3 |
++-------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select jenisbarang, sum(harga) as jumlah from data_barang
+    -> group by jenisbarang;
++-------------+--------+
+| jenisbarang | jumlah |
++-------------+--------+
+| A           |   8400 |
+| B           |  10200 |
++-------------+--------+
+2 rows in set (0.00 sec)
+
+mysql>
